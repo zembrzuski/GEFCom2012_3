@@ -1,8 +1,10 @@
 import numpy as np
 import copy
 
+
 def from_string_to_int(string):
     return int(string.replace(',', '')) if string != '' else None
+
 
 def raw_row_to_dict(row):
     return {
