@@ -19,6 +19,14 @@ def year_month_day_predicate(year, month, day):
     return lambda dict_inp: dict_inp['year'] == year and dict_inp['month'] == month and dict_inp['day'] == day
 
 
+def year_month_predicate(year, month):
+    return lambda dict_inp: dict_inp['year'] == year and dict_inp['month'] == month
+
+
+def zone_predicate(zone):
+    return lambda dict_inp: dict_inp['zone_id'] == zone
+
+
 def normalize(x):
     my_copy = copy.deepcopy(x)
     hours = my_copy['hours']

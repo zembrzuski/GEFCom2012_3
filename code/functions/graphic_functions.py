@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 
 
-def plot_line_chart(data, month):
+def save_line_chart(data, month):
     fig, ax = plt.subplots()
 
     plt.title(month)
