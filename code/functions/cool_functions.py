@@ -22,6 +22,8 @@ def year_month_day_predicate(year, month, day):
 def year_month_predicate(year, month):
     return lambda dict_inp: dict_inp['year'] == year and dict_inp['month'] == month
 
+def year_predicate(year):
+    return lambda dict_inp: dict_inp['year'] == year
 
 def zone_predicate(zone):
     return lambda dict_inp: dict_inp['zone_id'] == zone
