@@ -1,3 +1,6 @@
+install.packages('sqldf')
+library(sqldf)
+
 rm(list = ls())
 
 #setwd('~/zenlabs/GEFCom2012_3/r-code')
@@ -52,4 +55,18 @@ my_date_filtered <- subset(my_data, year==2004 & month==1 & zone_id==1)
 month_series <- matrix(unlist(t(my_date_filtered[,hours_cols])), byrow=T, nrow=1)[1,]
 plot(1:length(month_series), month_series, type="n", ylim = c(min(month_series), max(month_series)))
 lines(1:length(month_series), month_series, type="l", ylim = c(min(month_series), max(month_series)))
+
+
+# Third plot.
+# Para que vai servir esse cara?
+# Assim, vou pegar uma determinada zona.
+# Com essa zona, vou pegar cada um dos meses.
+# Para cada mes, vou calcular media, mediana, quartis, etc.
+# Aí, para cada mês, vou plotar um boxplot para ele.
+
+#my_date_filtered <- t(subset(my_data, year==2004 & month==1 & zone_id==9)[,c('day', hours_cols)])
+my_date_filtered <- t(subset(my_data, year==2004 & month==1 & zone_id==1)[,c(hours_cols)])
+boxplot(my_date_filtered)
+
+
 
