@@ -3,13 +3,7 @@ rm(list = ls())
 #setwd('~/zenlabs/GEFCom2012_3/r-code')
 setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
 
-# reading all_data
-all_data <- read.table(
-  "../datasets/Load_history.csv", 
-  dec = ".", 
-  sep = ",", 
-  header = TRUE
-)
+all_data <- read.table("../datasets/Load_history.csv", dec = ".", sep = ",", header = TRUE)
 
 # transforming from characteres with comma to numeric.
 my_data <- as.data.frame(gsub(",", "", as.matrix(all_data)))
@@ -88,13 +82,13 @@ my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1 & zone_id==2)
 min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
 plot(1:24, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
-lines(1:24, my_date_filtered[1,hours_cols], type="l", col=1, lwd=2)
+lines(1:24, my_date_filtered[1,hours_cols], type="l", col=2, lwd=2)
 
 my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1 & zone_id==4)
 min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
 plot(1:24, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
-lines(1:24, my_date_filtered[1,hours_cols], type="l", col=1, lwd=2)
+lines(1:24, my_date_filtered[1,hours_cols], type="l", col=3, lwd=2)
 
 
 
