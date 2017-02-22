@@ -78,6 +78,8 @@ boxplot(my_date_filtered)
 # It is very simple. Given a day and and two zones, I'll plot
 # a graphic with two subplots.
 
+par(mfrow = c(3, 1))
+
 my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1 & zone_id==1)
 min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
@@ -88,4 +90,16 @@ my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1 & zone_id==2)
 min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
 plot(1:24, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
-lines(1:24, my_date_filtered[1,hours_cols], type="l", col=2, lwd=2)
+lines(1:24, my_date_filtered[1,hours_cols], type="l", col=1, lwd=2)
+
+my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1 & zone_id==4)
+min_y_plot <- min(my_date_filtered[,hours_cols])
+max_y_plot <- max(my_date_filtered[,hours_cols])
+plot(1:24, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
+lines(1:24, my_date_filtered[1,hours_cols], type="l", col=1, lwd=2)
+
+
+
+# http://stackoverflow.com/questions/11794436/stacking-multiple-plots-vertically-with-the-same-x-axis-but-different-y-axes-in
+# grafico mais bonitinho
+# alem disso, tenho que normalizar os dados
