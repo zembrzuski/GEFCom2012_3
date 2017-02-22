@@ -1,6 +1,3 @@
-install.packages('sqldf')
-library(sqldf)
-
 rm(list = ls())
 
 #setwd('~/zenlabs/GEFCom2012_3/r-code')
@@ -36,6 +33,7 @@ hours_cols <- c('h1',  'h2',  'h3',  'h4',  'h5',
 # Esse gráfico contém o consumo por hora de cada uma das zonas.
 # Não serve para nada isso ainda. Mas pode ser estendido e melhorado.
 #
+par(mfrow = c(1, 1))
 my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1)
 min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
