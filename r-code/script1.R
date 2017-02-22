@@ -1,5 +1,7 @@
 rm(list = ls())
-setwd('~/zenlabs/GEFCom2012_3/r-code')
+
+#setwd('~/zenlabs/GEFCom2012_3/r-code')
+setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
 
 # reading all_data
 all_data <- read.table(
@@ -47,10 +49,7 @@ for (i in 1:20) {
 # Daí, se der, vou repetir isso para cada mês.
 #
 my_date_filtered <- subset(my_data, year==2004 & month==1 & zone_id==1)
-min_y_plot <- min(my_datadate_filtered[,hours_cols])
-max_y_plot <- max(my_datadate_filtered[,hours_cols])
-# TODO melhorar isso para que ele seja generino na quantidade de dias por mes. por ora, fica assim.
-plot(1:31, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
+month_series <- matrix(unlist(t(my_date_filtered[,hours_cols])), byrow=T, nrow=1)[1,]
+plot(1:length(month_series), month_series, type="n", ylim = c(min(month_series), max(month_series)))
+lines(1:length(month_series), month_series, type="l", ylim = c(min(month_series), max(month_series)))
 
-x <- my_date_filtered[,hours_cols]
-as.data.frame(x, ro)
