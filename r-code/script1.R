@@ -1,7 +1,7 @@
 rm(list = ls())
 
-#setwd('~/zenlabs/GEFCom2012_3/r-code')
-setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
+setwd('~/zenlabs/GEFCom2012_3/r-code')
+#setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
 
 all_data <- read.table("../datasets/Load_history.csv", dec = ".", sep = ",", header = TRUE)
 
@@ -20,6 +20,12 @@ hours_cols <- c('h1',  'h2',  'h3',  'h4',  'h5',
                 'h16', 'h17', 'h18', 'h19', 'h20', 
                 'h21', 'h22', 'h23', 'h24')
 
+
+my_data_normalized <- t(apply(my_data[,hours_cols], 1, function(x)(x-min(x))/(max(x)-min(x))))
+my_data_normalized <- cbind(my_data[,c('zone_id', 'year', 'month', 'day')], my_data_normalized)
+my_data <- my_data_normalized
+rm(my_data_normalized)
+
 #
 # First plot.
 # Ele pega o dia 1 de cada mês do ano de 2005.
@@ -33,11 +39,17 @@ min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
 plot(1:24, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
 for (i in 1:20) {
-  lines(1:24, my_date_filtered[i,hours_cols], type="l", col=i, lwd=2)
+  lines(1:24, my_date_filtered[i,hours_cols], type="l", col=i, lwd=1)
 }
 
 
-#
+
+
+
+my_data_normalized <- t(apply(my_data[,hours_cols], 1, function(x)(x-min(x))/(max(x)-min(x))))
+my_data_normalized <- cbind(my_data[,c('zone_id', 'year', 'month', 'day')], my_data_normalized)
+View(my_data_normalized)
+my_data[,c('zone_id', 'year', 'month', 'day')]#
 # Second plot.
 # Eu acho que vou pegar uma determinada zona.
 # E então vou plotar um mês inteiro para cada zona.
