@@ -38,9 +38,26 @@ my_date_filtered <- subset(my_data, year==2004 & month==1 & day==1)
 min_y_plot <- min(my_date_filtered[,hours_cols])
 max_y_plot <- max(my_date_filtered[,hours_cols])
 plot(1:24, my_date_filtered[1,hours_cols], type="n", ylim = c(min_y_plot, max_y_plot))
-for (i in 1:20) {
+for (i in 20:1) {
   lines(1:24, my_date_filtered[i,hours_cols], type="l", col=i, lwd=1)
 }
+
+
+
+
+
+
+
+# verificando correlacao visualmente entre cada par de zonas.
+par(mfrow = c(1, 1))
+my_date_filtered <- subset(my_data, year==2004 & month==7 & day==1)
+min_y_plot <- min(my_date_filtered[,hours_cols])
+max_y_plot <- max(my_date_filtered[,hours_cols])
+
+
+
+
+
 
 
 
