@@ -1,3 +1,7 @@
+#
+# Visualizacao de dados.
+#
+
 rm(list = ls())
 
 setwd('~/zenlabs/GEFCom2012_3/r-code')
@@ -61,11 +65,6 @@ for(i in 20:1) {
   }
 }
 
-## calculando correlacao entre duas zonas.
-## esse indice está bem ok em relação ao que eu havia visualizado.
-i <- 14
-j <- 19
-cor(t(my_date_filtered[i,hours_cols]), t(my_date_filtered[j,hours_cols]))
 
 
 
