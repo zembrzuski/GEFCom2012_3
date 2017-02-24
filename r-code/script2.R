@@ -40,3 +40,18 @@ colnames(correlations) <- 1:20
 rownames(correlations) <- 1:20
 lowerTriangle(correlations, diag=TRUE) <- NA
 View(correlations)
+
+indexed_correlations <- data.frame(
+  row=c(row(correlations)), 
+  col=c(col(correlations)), 
+  value=mapply(function(x) x, correlations)
+)
+
+# filtrando somente os disponiveis.
+indexed_correlations <- indexed_correlations[!is.na(indexed_correlations[,3]),]
+
+# ordenando
+indexed_correlations <- indexed_correlations[order(indexed_correlations[,3], decreasing = TRUE),]
+
+View(indexed_correlations)
+
