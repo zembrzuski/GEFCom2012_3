@@ -40,4 +40,3 @@ colnames(correlations) <- 1:20
 rownames(correlations) <- 1:20
 lowerTriangle(correlations, diag=TRUE) <- NA
 View(correlations)
-max(correlations)
