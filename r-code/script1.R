@@ -1,5 +1,7 @@
 #
-# Visualizacao de dados.
+#
+# Visualizing data.
+#
 #
 
 rm(list = ls())
