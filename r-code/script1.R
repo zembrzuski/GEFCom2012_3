@@ -6,8 +6,8 @@
 
 rm(list = ls())
 
-setwd('~/zenlabs/GEFCom2012_3/r-code')
-#setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
+#setwd('~/zenlabs/GEFCom2012_3/r-code')
+setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
 
 all_data <- read.table("../datasets/Load_history.csv", dec = ".", sep = ",", header = TRUE)
 
