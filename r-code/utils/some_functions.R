@@ -24,7 +24,8 @@ normalize_data <- function(my_data) {
 }
 
 
-compute_correlation_between_zones <- function(my_data) {
+
+compute_correlation_between_zones <- function(my_data, correlation_id) {
   # TODO it would be betther if this get_hours_cols() were a parameters, instead of a coupled function.
   correlations <- cor(t(my_data[,get_hours_cols()]), t(my_data[,get_hours_cols()]))
   correlations <- abs(correlations)
@@ -37,6 +38,8 @@ compute_correlation_between_zones <- function(my_data) {
     col=c(col(correlations)), 
     value=mapply(function(x) x, correlations)
   )
+  
+  colnames(indexed_correlations) <- c('zone-A', 'zone-B', correlation_id)
   
   return(indexed_correlations)
 }
