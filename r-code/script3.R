@@ -33,5 +33,17 @@ my_data <- my_data[!my_data[,'date_as_str'] %in% test_set_backtesting[,'date_as_
 my_data <- my_data[!my_data[,'date_as_str'] %in% test_set_forecasting[,'date_as_str'],]
 
 training_set <- my_data
-rm(my_data)
 
+
+# random
+predictions_validation_set_backtesting <- 
+  data.frame(replicate(dim(validation_set_backtesting[, get_hours_cols()])[2],sample(0:1,dim(validation_set_backtesting)[1],rep=TRUE)))
+
+View(sapply(predictions_validation_set_backtesting - validation_set_backtesting[, get_hours_cols()], function(x) x^2 * 1))
+
+
+
+predictions_validation_set_backtesting - validation_set_backtesting[, get_hours_cols()]#View(validation_set_backtesting)
+#validation_set_backtestingdim(validation_set_backtesting)[2]
+#
+#data.frame(replicate(5,sample(0:3,100,rep=TRUE)))
