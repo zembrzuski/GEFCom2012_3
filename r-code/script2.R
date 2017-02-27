@@ -36,4 +36,28 @@ matrix_correlation <- matrix_correlation[!is.na(matrix_correlation[,3]),]
 # ordenando
 #matrix_correlation <- indexed_correlations[order(indexed_correlations[,3], decreasing = TRUE),]
 
-View(matrix_correlation)
+
+
+
+
+matrix_correlation <- cbind(matrix_correlation, do.call(paste, matrix_correlation[, c(1, 2)]))
+
+matrix_correlation <- cbind(
+  matrix_correlation[,dim(matrix_correlation)[2]],
+  matrix_correlation[,4:dim(matrix_correlation)[2]-1]
+)
+
+
+colnames(matrix_correlation)[1] <- 'zones'
+
+#
+#
+# An interesting way to go on in this file is this: plot some graphics to see if
+# correlation between zones are incriesign year by year or if it is a trap from my
+# mind.
+#
+# Also, it would be great if I could compare correlations with much more dates then I am
+# doing now. For example, compare multiple dates of a given year, instead of comparing only
+# the first day of the year.
+#
+#
