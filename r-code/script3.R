@@ -47,6 +47,16 @@ system_training_set <- aggregate(. ~ date_as_str, zone_training_set[,c(get_hours
 ### I need to make foo predictions now, and implement cost function to evaluate my model.
 ###
 
+# Doing some random predictions. I can't do better now.
+
+zone_validation_set_backtesting_predictions <- data.frame(replicate(dim(zone_validation_set_backtesting[, get_hours_cols()])[2],sample(0:1,dim(zone_validation_set_backtesting)[1],rep=TRUE)))
+
+View(zone_validation_set_backtesting_predictions)
+View(zone_validation_set_backtesting)
+
+zone_validation_set_forecasting_predictions <- ?
+system_validation_set_backtesting_predictions <- ?
+system_validation_set_forecasting_predictions <- ?
 
 
 
