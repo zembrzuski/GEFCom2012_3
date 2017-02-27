@@ -43,3 +43,34 @@ compute_correlation_between_zones <- function(my_data, correlation_id) {
   
   return(indexed_correlations)
 }
+
+
+
+# very, very stupid way to create a correlation_matrix.
+# TODO it would be betther if this get_hours_cols() were a parameters, instead of a coupled function.
+prepare_correlation_matrix <- function(my_data) {
+  correlations <- cor(t(my_data[,get_hours_cols()]), t(my_data[,get_hours_cols()]))
+  correlations <- abs(correlations)
+  colnames(correlations) <- 1:20
+  rownames(correlations) <- 1:20
+  lowerTriangle(correlations, diag=TRUE) <- NA
+  
+  indexed_correlations <- data.frame(
+    row=c(row(correlations)), 
+    col=c(col(correlations)), 
+    value=mapply(function(x) x, correlations)
+  )
+  
+  colnames(indexed_correlations) <- c('zone-A', 'zone-B', 'xoxo')
+  
+  return(indexed_correlations[,c('zone-A', 'zone-B')])
+}
+
+append_date_to_correlation_matrix <- function(m_correlation, my_data, correlation_id) {
+  computed_correlation <- compute_correlation_between_zones(my_data, correlation_id)
+
+  new_matrix = cbind(m_correlation, computed_correlation[,3])
+  colnames(new_matrix)[length(colnames(new_matrix))] <- correlation_id
+  
+  return(new_matrix)
+}
