@@ -52,3 +52,5 @@ system_backtesting_predictions <-
         system_backtesting_predictions_5, system_backtesting_predictions_6,
         system_backtesting_predictions_7, system_backtesting_predictions_8)
 
+
+# I need to create a way to compute the cost function givin two data-frames whose rows are in different orders.
