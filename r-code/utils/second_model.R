@@ -11,5 +11,31 @@ backtesting_dates_8 <- c('2006/11/10','2006/11/11','2006/11/12','2006/11/13','20
 
 forecasting_dates <- c('2008/6/19', '2008/6/20', '2008/6/21', '2008/6/22', '2008/6/23', '2008/6/24')
 
-View(zone_training_set)
-View(subset(zone_training_set, date_as_str == '2005/2/21'))
+
+
+do_prediction <- function(base_date, dates_to_predict) {
+  # nesse caso, o base date é o dia anterior.
+  base_data <- subset(zone_training_set, date_as_str == base_date)[,c(get_hours_cols(), 'zone_id')]
+  return(merge(cbind(dates_to_predict), base_data, all=TRUE))
+}
+
+zones_backtesting_predictions_1 <- do_prediction('2005/2/21', backtesting_dates_1)
+zones_backtesting_predictions_2 <- do_prediction('2005/6/7', backtesting_dates_2)
+zones_backtesting_predictions_3 <- do_prediction('2005/8/28', backtesting_dates_3)
+zones_backtesting_predictions_4 <- do_prediction('2005/12/12', backtesting_dates_4)
+zones_backtesting_predictions_5 <- do_prediction('2006/1/31', backtesting_dates_5)
+zones_backtesting_predictions_6 <- do_prediction('2006/5/12', backtesting_dates_6)
+zones_backtesting_predictions_7 <- do_prediction('2006/8/20', backtesting_dates_7)
+zones_backtesting_predictions_8 <- do_prediction('2006/11/9', backtesting_dates_8)
+
+system_backtesting_predictions_1 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_1[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_2 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_2[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_3 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_3[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_4 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_4[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_5 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_5[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_6 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_6[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_7 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_7[,c(get_hours_cols(), 'dates_to_predict')], sum)
+system_backtesting_predictions_8 <- aggregate(. ~ dates_to_predict, zones_backtesting_predictions_8[,c(get_hours_cols(), 'dates_to_predict')], sum)
+
+zones_forecasting_predictions <- do_prediction('2008/6/18', forecasting_dates)
+system_forecasting_predictions <- aggregate(. ~ dates_to_predict, zones_forecasting_predictions[,c(get_hours_cols(), 'dates_to_predict')], sum)
