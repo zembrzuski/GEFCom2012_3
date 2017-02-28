@@ -39,3 +39,16 @@ system_backtesting_predictions_8 <- aggregate(. ~ dates_to_predict, zones_backte
 
 zones_forecasting_predictions <- do_prediction('2008/6/18', forecasting_dates)
 system_forecasting_predictions <- aggregate(. ~ dates_to_predict, zones_forecasting_predictions[,c(get_hours_cols(), 'dates_to_predict')], sum)
+
+zones_backtesting_predictions <- 
+  rbind(zones_backtesting_predictions_1, zones_backtesting_predictions_2, 
+        zones_backtesting_predictions_3, zones_backtesting_predictions_4,
+        zones_backtesting_predictions_5, zones_backtesting_predictions_6,
+        zones_backtesting_predictions_7, zones_backtesting_predictions_8)
+
+system_backtesting_predictions <-
+  rbind(system_backtesting_predictions_1, system_backtesting_predictions_2,
+        system_backtesting_predictions_3, system_backtesting_predictions_4,
+        system_backtesting_predictions_5, system_backtesting_predictions_6,
+        system_backtesting_predictions_7, system_backtesting_predictions_8)
+
