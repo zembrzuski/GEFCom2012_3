@@ -74,3 +74,8 @@ append_date_to_correlation_matrix <- function(m_correlation, my_data, correlatio
   
   return(new_matrix)
 }
+
+cost_function <- function(my_predictions, real_answer, weight) {
+  # please make sure the predictions and the real answers are in the same order
+  return(sqrt(sum((my_predictions[,get_hours_cols()] - real_answer[,get_hours_cols()])^2 * weight)))
+}
