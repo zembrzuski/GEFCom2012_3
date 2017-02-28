@@ -10,8 +10,8 @@ require(plyr)
 require(stats)
 require(gdata)
 
-setwd('~/zenlabs/GEFCom2012_3/r-code')
-#setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
+#setwd('~/zenlabs/GEFCom2012_3/r-code')
+setwd('~/zenlabs/GEFCom2012/kaggle/r-code')
 source('./utils/some_functions.R')
 
 my_data <- read_data_with_commas("../datasets/Load_history.csv")
@@ -42,16 +42,37 @@ my_data <- my_data[!my_data[,'date_as_str'] %in% zone_test_set_forecasting[,'dat
 zone_training_set <- my_data
 system_training_set <- aggregate(. ~ date_as_str, zone_training_set[,c(get_hours_cols(), 'date_as_str')], sum)
 
-###
-### In this point, I have all data-sets I need to advance in the competition.
-### I need to make foo predictions now, and implement cost function to evaluate my model.
-###
 
-# Doing some random predictions. I can't do better now.
 
-#zone_validation_set_backtesting_predictions <- data.frame(replicate(dim(zone_validation_set_backtesting[, get_hours_cols()])[2],sample(0:1000,dim(zone_validation_set_backtesting)[1],rep=TRUE)))
-#zone_validation_set_forecasting_predictions <- ?
-#system_validation_set_backtesting_predictions <- ?
-#system_validation_set_forecasting_predictions <- ?
 
-# Now, I should compute the cost function.
+create_zeros_predictions_zones <- function(real_answer_matrix) {
+  zeros_predictions <- real_answer_matrix[,c('date_as_str', 'zone_id')]
+  
+  new_data_frame <- data.frame(matrix(0, ncol=24, nrow=dim(real_answer_matrix)[1]))
+  colnames(new_data_frame) <- get_hours_cols()
+  
+  return(cbind(zeros_predictions, new_data_frame))
+}
+
+create_zeros_predictions_system <- function(real_answer_matrix) {
+  zeros_predictions <- real_answer_matrix[,'date_as_str']
+  
+  new_data_frame <- data.frame(matrix(0, ncol=24, nrow=dim(real_answer_matrix)[1]))
+  colnames(new_data_frame) <- get_hours_cols()
+  
+  return(cbind(zeros_predictions, new_data_frame))
+}
+
+
+zone_validation_set_backtesting_predictions <- create_zeros_predictions_zones(zone_validation_set_backtesting)
+zone_validation_set_forecasting_predictions <- create_zeros_predictions_zones(zone_validation_set_forecasting)
+system_validation_set_backtesting_predictions <- create_zeros_predictions_system(system_validation_set_backtesting)
+system_validation_set_forecasting_predictions <- create_zeros_predictions_system(system_validation_set_forecasting)
+
+
+View(zone_validation_set_backtesting_predictions)
+View(zone_validation_set_forecasting_predictions)
+View(system_validation_set_backtesting_predictions)
+View(system_validation_set_forecasting_predictions)
+
+
