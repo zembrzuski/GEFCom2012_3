@@ -37,3 +37,4 @@ my_data <- my_data[!my_data[,'date_as_str'] %in% zone_test_set_forecasting[,'dat
 ### TRAINING-SET
 zone_training_set <- my_data
 system_training_set <- aggregate(. ~ date_as_str, zone_training_set[,c(get_hours_cols(), 'date_as_str')], sum)
+
